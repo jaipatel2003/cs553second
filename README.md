@@ -1,5 +1,5 @@
 ---
-title: Gradio Chatbot
+title: Testafterclass
 emoji: 💬
 colorFrom: yellow
 colorTo: purple
