@@ -162,7 +162,7 @@ with gr.Blocks(css=custom_css) as demo:
 
     chat_history.like(vote, None, None)
 
-    user_input = gr.MultimodalTextbox(show_label=False, placeholder="Type your message here...", max_lines = 40)
+    user_input = gr.Textbox(show_label=False, placeholder="Type your message here...", max_lines = 40)
 
     #with gr.Row():
     #    clearbutton = gr.ClearButton.add(user_input)
