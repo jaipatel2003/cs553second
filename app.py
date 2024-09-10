@@ -105,6 +105,11 @@ h1 {
     font-size: 40px;
     color: #00008a
 }
+h3 {
+    text-align: center;
+    font-size: 20px;
+    color: #800020
+}
 .gradio-container {
     max-width: 700px;
     margin: 0 auto;
@@ -145,7 +150,7 @@ h1 {
 # Define the interface
 with gr.Blocks(css=custom_css) as demo:
     gr.Markdown("<h1>🤖 Adina and Jai's Chatbot 🤖</h1>")
-    gr.Markdown("Interact with the AI chatbot using customizable settings below.")
+    gr.Markdown("<h3>Interact with the AI chatbot using customizable settings below.</h3>")
 
     with gr.Row():
         system_message = gr.Textbox(value="You are a friendly Chatbot.", label="System message", interactive=True)
