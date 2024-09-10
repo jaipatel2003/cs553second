@@ -171,9 +171,8 @@ with gr.Blocks(css=custom_css) as demo:
 
     user_input = gr.Textbox(show_label=False, placeholder="Type your message here...", max_lines = 40)
 
-    clear_button_2 = gr.Button("Clear Prompt")
-    clear_button_2.click(fn=user_input)
-	
+    clear_button_2 = gr.ClearButton(user_input)
+
     cancel_button = gr.Button("Cancel Inference", variant="danger")
 
     # Adjusted to ensure history is maintained and passed correctly
