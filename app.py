@@ -157,7 +157,7 @@ with gr.Blocks(css=custom_css) as demo:
 
     with gr.Row():
         use_local_model = gr.Checkbox(label="Use Local Model", value=False)
-	dup_button = gr.DuplicateButton()
+        dup_button = gr.DuplicateButton()
 
     with gr.Column(scale=4):
         max_tokens = gr.Slider(minimum=1, maximum=3000, value=500, step=50, label="Max new tokens", randomize = True)
