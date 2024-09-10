@@ -167,6 +167,10 @@ with gr.Blocks(css=custom_css) as demo:
 
     chat_history = gr.Chatbot(label="Chat")
 
+    clear_button_2 = gr.Button("Clear Chat History")
+    clear_button_2.click(fn=chat_history)
+
+
     chat_history.like(vote, None, None)
 
     user_input = gr.Textbox(show_label=False, placeholder="Type your message here...", max_lines = 40)
