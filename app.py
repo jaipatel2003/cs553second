@@ -82,6 +82,13 @@ def respond(
             yield history + [(message, response)]  # Yield history + new response
 
 
+def vote(data: gr.LikeData):
+    if data.liked:
+        print("You upvoted this response: " + data.value["value"])
+    else:
+        print("You downvoted this response: " + data.value["value"])
+
+
 def cancel_inference():
     global stop_inference
     stop_inference = True
@@ -153,12 +160,13 @@ with gr.Blocks(css=custom_css) as demo:
 
     chat_history = gr.Chatbot(label="Chat")
 
+    chat_history.like(vote, None, None)
+
     user_input = gr.Textbox(show_label=False, placeholder="Type your message here...", max_lines = 40)
 
     #with gr.Row():
     #    clearbutton = gr.ClearButton.add(user_input)
-
-
+	
     cancel_button = gr.Button("Cancel Inference", variant="danger")
 
     # Adjusted to ensure history is maintained and passed correctly
