@@ -164,7 +164,6 @@ with gr.Blocks(css=custom_css) as demo:
         clear_button = gr.ClearButton(system_message)
         
         image_interface = gr.Interface(fn=display_image_html, inputs=None, outputs=gr.HTML())
-        image_interface.launch()
 
     with gr.Row():
         use_local_model = gr.Checkbox(label="Use Local Model", value=False)
