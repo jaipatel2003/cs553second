@@ -2,6 +2,7 @@ import gradio as gr
 from huggingface_hub import InferenceClient
 import torch
 from transformers import pipeline
+from PIL import Image
 
 # Inference client setup
 client = InferenceClient("HuggingFaceH4/zephyr-7b-beta")
@@ -155,7 +156,9 @@ with gr.Blocks(css=custom_css) as demo:
     with gr.Row():
         system_message = gr.Textbox(value="You are a friendly Chatbot.", label="System message", interactive=True)
         clear_button = gr.ClearButton(system_message)
-        gr.HTML("<img src='WPI.png'>")
+        
+        image_interface = gr.Interface(fn=Image.open("WPI.png"), inputs=None, outputs=gr.Image())
+        image_interface.launch()
 
     with gr.Row():
         use_local_model = gr.Checkbox(label="Use Local Model", value=False)
