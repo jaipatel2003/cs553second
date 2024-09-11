@@ -146,6 +146,12 @@ h3 {
 }
 """
 
+
+def display_image_html():
+    html_code = """ <img src='WPI.png' style='width:300px;'> """
+    return html_code
+
+
 #Max_tokens min/max values, step, randomize
 
 # Define the interface
@@ -157,7 +163,7 @@ with gr.Blocks(css=custom_css) as demo:
         system_message = gr.Textbox(value="You are a friendly Chatbot.", label="System message", interactive=True)
         clear_button = gr.ClearButton(system_message)
         
-        image_interface = gr.Interface(fn= """ <img src='WPI.png' style='width:300px;'> """, inputs=None, outputs=gr.HTML())
+        image_interface = gr.Interface(fn=display_image_html, inputs=None, outputs=gr.HTML())
         image_interface.launch()
 
     with gr.Row():
