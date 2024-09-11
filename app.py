@@ -157,7 +157,7 @@ with gr.Blocks(css=custom_css) as demo:
     with gr.Row():
         system_message = gr.Textbox(value="You are a friendly Chatbot.", label="System message", interactive=True)
         clear_button = gr.ClearButton(system_message)
-        gr.HTML("<img src='file/WPI.png'>")
+        gr.Image("WPI.png", label="WPI Logo", type="filepath")
 
     with gr.Row():
         use_local_model = gr.Checkbox(label="Use Local Model", value=False)
@@ -186,4 +186,4 @@ with gr.Blocks(css=custom_css) as demo:
     #ClearButton.click(clearbutton)
 
 if __name__ == "__main__":
-    demo.launch(share=False, allowed_paths=['file/WPI.png'])  # Remove share=True because it's not supported on HF Spaces
+    demo.launch(share=False, allowed_paths=['WPI.png'])  # Remove share=True because it's not supported on HF Spaces
