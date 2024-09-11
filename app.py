@@ -155,6 +155,7 @@ with gr.Blocks(css=custom_css) as demo:
     with gr.Row():
         system_message = gr.Textbox(value="You are a friendly Chatbot.", label="System message", interactive=True)
         clear_button = gr.ClearButton(system_message)
+        gr.Image("/file=WPI.png")
 
     with gr.Row():
         use_local_model = gr.Checkbox(label="Use Local Model", value=False)
