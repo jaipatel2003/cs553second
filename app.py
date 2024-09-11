@@ -147,11 +147,6 @@ h3 {
 """
 
 
-def display_image_html():
-    html_code = """ <img src='WPI.png' style='width:300px;'> """
-    return html_code
-
-
 #Max_tokens min/max values, step, randomize
 
 # Define the interface
@@ -162,8 +157,7 @@ with gr.Blocks(css=custom_css) as demo:
     with gr.Row():
         system_message = gr.Textbox(value="You are a friendly Chatbot.", label="System message", interactive=True)
         clear_button = gr.ClearButton(system_message)
-        
-        image_interface = gr.Interface(fn=display_image_html, inputs=None, outputs=gr.HTML())
+        gr.HTML("<img src='WPI.png'>")
 
     with gr.Row():
         use_local_model = gr.Checkbox(label="Use Local Model", value=False)
@@ -192,4 +186,4 @@ with gr.Blocks(css=custom_css) as demo:
     #ClearButton.click(clearbutton)
 
 if __name__ == "__main__":
-    demo.launch(share=False)  # Remove share=True because it's not supported on HF Spaces
+    demo.launch(share=False, allowed_paths=['WPI.png'])  # Remove share=True because it's not supported on HF Spaces
