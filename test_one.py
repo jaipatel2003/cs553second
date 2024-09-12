@@ -1,5 +1,5 @@
 import math
-from app import *
+from app import cancel_inference
 
 def testsquare():
    num = 3
