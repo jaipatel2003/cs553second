@@ -155,6 +155,7 @@ with gr.Blocks(css=custom_css) as demo:
     gr.Markdown("<h3>Interact with the AI chatbot using customizable settings below.</h3>")
 
     with gr.Row():
+        gr.Image("mlops.png", label="MLOps", type="filepath")
         with gr.Column(scale=4):
             system_message = gr.Textbox(value="You are a friendly Chatbot.", label="System message", interactive=True)
             clear_button = gr.ClearButton(system_message)
@@ -187,4 +188,4 @@ with gr.Blocks(css=custom_css) as demo:
     #ClearButton.click(clearbutton)
 
 if __name__ == "__main__":
-    demo.launch(share=False, allowed_paths=['WPI.png'])  # Remove share=True because it's not supported on HF Spaces
+    demo.launch(share=False, allowed_paths=['WPI.png','mlops.png'])  # Remove share=True because it's not supported on HF Spaces
