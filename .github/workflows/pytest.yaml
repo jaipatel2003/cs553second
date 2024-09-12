@@ -21,5 +21,8 @@ jobs:
       - name: Install more dependencies
         run: pip install gradio
 
+      - name: Install torch
+        run: pip install torch
+
       - name: Run tests
         run: pytest -v
