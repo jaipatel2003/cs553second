@@ -1,22 +1,67 @@
-name: Run Pytest
-on:
-  push:
-    branches: [main]
+name: Run Pytest 
 
-  # to run this workflow manually from the Actions tab.
-  workflow_dispatch:
+on: 
 
-jobs:
-  run-pytest:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          lfs: true
+  push: 
 
-      - name: Install pytest
-        run: pip install pytest
+    branches: [main] 
 
-      - name: Run tests
-        run: pytest -v
+ 
+
+  # to run this workflow manually from the Actions tab. 
+
+  workflow_dispatch: 
+
+ 
+
+jobs: 
+
+  run-pytest: 
+
+    runs-on: ubuntu-latest 
+
+    steps: 
+
+      - uses: actions/checkout@v3 
+
+        with: 
+
+          fetch-depth: 0 
+
+          lfs: true 
+
+ 
+
+      - name: Install pytest 
+
+        run: pip install pytest 
+
+ 
+
+      - name: Install gradio 
+
+        run: pip install gradio 
+
+ 
+
+      - name: Install torch 
+
+        run: pip install torch 
+
+ 
+
+      - name: Install transformers 
+
+        run: pip install transformers 
+
+ 
+
+      - name: Install accelerate 
+
+        run: pip install accelerate 
+
+ 
+
+      - name: Run tests 
+
+        run: pytest -v 
