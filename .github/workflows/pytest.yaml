@@ -35,31 +35,6 @@ jobs:
       - name: Install pytest 
 
         run: pip install pytest 
-
- 
-
-      - name: Install gradio 
-
-        run: pip install gradio 
-
- 
-
-      - name: Install torch 
-
-        run: pip install torch 
-
- 
-
-      - name: Install transformers 
-
-        run: pip install transformers 
-
- 
-
-      - name: Install accelerate 
-
-        run: pip install accelerate 
-
  
 
       - name: Run tests 
