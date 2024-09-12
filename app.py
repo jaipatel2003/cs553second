@@ -155,8 +155,9 @@ with gr.Blocks(css=custom_css) as demo:
     gr.Markdown("<h3>Interact with the AI chatbot using customizable settings below.</h3>")
 
     with gr.Row():
-        system_message = gr.Textbox(value="You are a friendly Chatbot.", label="System message", interactive=True)
-        clear_button = gr.ClearButton(system_message)
+        with gr.Column(scale=4):
+            system_message = gr.Textbox(value="You are a friendly Chatbot.", label="System message", interactive=True)
+            clear_button = gr.ClearButton(system_message)
         gr.Image("WPI.png", label="WPI Logo", type="filepath")
 
     with gr.Row():
