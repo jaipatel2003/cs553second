@@ -1,4 +1,5 @@
 import math
+import gradio
 from app import cancel_inference
 
 def testsquare():
