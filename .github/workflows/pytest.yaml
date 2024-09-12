@@ -15,14 +15,17 @@ jobs:
           fetch-depth: 0
           lfs: true
 
-      - name: Install dependencies
+      - name: Install pytest
         run: pip install pytest
 
-      - name: Install more dependencies
+      - name: Install gradio
         run: pip install gradio
 
       - name: Install torch
         run: pip install torch
+
+      - name: Install transformers
+        run: pip install transformers
 
       - name: Run tests
         run: pytest -v
