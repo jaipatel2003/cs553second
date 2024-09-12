@@ -18,5 +18,8 @@ jobs:
       - name: Install dependencies
         run: pip install pytest
 
+      - name: Install more dependencies
+        run: pip install gradio
+
       - name: Run tests
         run: pytest -v
