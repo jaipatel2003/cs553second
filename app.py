@@ -5,7 +5,7 @@ from transformers import pipeline
 
 # Inference client setup
 client = InferenceClient("HuggingFaceH4/zephyr-7b-beta")
-pipe = pipeline("text-generation", "microsoft/Phi-3-mini-4k-instruct", torch_dtype=torch.bfloat16, device_map="auto")
+pipe = pipeline("text-generation", "microsoft/Phi-3-mini-4k-instruct", torch_dtype=torch.bfloat16)
 
 # Global flag to handle cancellation
 stop_inference = False
@@ -165,7 +165,7 @@ with gr.Blocks(css=custom_css) as demo:
         use_local_model = gr.Checkbox(label="Use Local Model", value=False)
 
     with gr.Column(scale=4):
-        max_tokens = gr.Slider(minimum=1, maximum=3000, value=500, step=50, label="Max new tokens", randomize = True)
+        max_tokens = gr.Slider(minimum=1, maximum=3000, value=500, step=50, label="Max new tokens")
         temperature = gr.Slider(minimum=0.1, maximum=4.0, value=0.7, step=0.1, label="Temperature")
         top_p = gr.Slider(minimum=0.1, maximum=1.0, value=0.95, step=0.05, label="Top-p (nucleus sampling)")
 
