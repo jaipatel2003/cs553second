@@ -2,7 +2,6 @@ import gradio as gr
 from huggingface_hub import InferenceClient
 import torch
 from transformers import pipeline
-from PIL import Image
 
 # Inference client setup
 client = InferenceClient("HuggingFaceH4/zephyr-7b-beta")
@@ -158,12 +157,10 @@ with gr.Blocks(css=custom_css) as demo:
         dup_button = gr.DuplicateButton()
 
     with gr.Row():
-        gr.Image("mlops.png", label="MLOps", type="filepath")
         with gr.Column(scale=4):
             system_message = gr.Textbox(value="You are a friendly Chatbot.", label="System message", interactive=True)
             clear_button = gr.ClearButton(system_message)
-        gr.Image("WPI.png", label="WPI Logo", type="filepath")
-
+            
     with gr.Row():
         use_local_model = gr.Checkbox(label="Use Local Model", value=False)
 
@@ -190,4 +187,4 @@ with gr.Blocks(css=custom_css) as demo:
     #ClearButton.click(clearbutton)
 
 if __name__ == "__main__":
-    demo.launch(share=False, allowed_paths=['WPI.png','mlops.png'])  # Remove share=True because it's not supported on HF Spaces
+    demo.launch(share=False)  # Remove share=True because it's not supported on HF Spaces
