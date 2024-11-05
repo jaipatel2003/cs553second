@@ -2,6 +2,14 @@ import gradio as gr
 from huggingface_hub import InferenceClient
 import torch
 from transformers import pipeline
+from prometheus_client import start_http_server, Counter, Summary
+
+REQUEST_COUNTER = Counter('app_requests_total', 'Total number of requests')
+REQUEST_DURATION = Summary('app_request_duration_seconds', 'Time spent processing request')
+MODEL_SWITCH = Counter('app_model_switch_total', 'Total number of model switches between local and API-based')
+TEMPERATURE_CHANGE = Counter('app_temperature_change_total', 'Total number of temperature changes by users')
+SYSTEM_MESSAGE_CHANGE = Counter('app_system_message_changes', 'Total number of system message changes by users')
+
 
 # Inference client setup
 client = InferenceClient("HuggingFaceH4/zephyr-7b-beta")
@@ -19,8 +27,22 @@ def respond(
     top_p=0.95,
     use_local_model=False,
 ):
+    
     global stop_inference
     stop_inference = False  # Reset cancellation flag
+    REQUEST_COUNTER.inc()  # Increment request counter
+    request_timer = REQUEST_DURATION.time()  # Start timing the request
+
+    if last_model_choice is not None and last_model_choice != use_local_model:
+        MODEL_SWITCH.inc()
+    last_model_choice = use_local_model 
+
+    if last_temperature is not None and last_temperature != temperature:
+        TEMPERATURE_CHANGE.inc()
+    last_temperature = temperature
+
+    if system_message != "You are a friendly Chatbot.":
+        SYSTEM_MESSAGE_CHANGE.inc()
 
     # Initialize history if it's None
     if history is None:
@@ -80,6 +102,9 @@ def respond(
             token = message_chunk.choices[0].delta.content
             response += token
             yield history + [(message, response)]  # Yield history + new response
+
+    request_timer.observe_duration()  # Stop timing the request
+
 
 
 def vote(data: gr.LikeData):
@@ -187,4 +212,5 @@ with gr.Blocks(css=custom_css) as demo:
     #ClearButton.click(clearbutton)
 
 if __name__ == "__main__":
+    start_http_server(8000)  # Expose metrics on port 8000
     demo.launch(share=False)  # Remove share=True because it's not supported on HF Spaces
